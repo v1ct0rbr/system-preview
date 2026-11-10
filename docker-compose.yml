@@ -7,8 +7,7 @@ services:
       dockerfile: Dockerfile
     image: system-preview:local
     container_name: system-preview
-    ports:
-      - "${APP_PORT:-8080}:80"
+    
     environment:
       SYSTEM_NAME: "${SYSTEM_NAME:-Aurora}"
       SYSTEM_DESCRIPTION: "${SYSTEM_DESCRIPTION:-Uma nova experiência para gerenciar, acompanhar e evoluir suas operações — em um só lugar.}"
