@@ -9,11 +9,64 @@ type CountdownProps = {
   launchDateLabel: string
 }
 
-function Digit({ value, launched }: { value: string; launched: boolean }) {
+type ClockDensity = "default" | "compact" | "dense"
+
+const TILE_STYLES: Record<ClockDensity, string> = {
+  default:
+    "h-[clamp(4rem,13vw,7.75rem)] w-[clamp(2.45rem,9vw,5.4rem)] rounded-[clamp(0.9rem,2.5vw,1.35rem)]",
+  compact:
+    "h-[clamp(3.1rem,13vw,7.75rem)] w-[clamp(1.8rem,9vw,5.4rem)] rounded-[clamp(0.65rem,2.5vw,1.35rem)]",
+  dense:
+    "h-[clamp(2.7rem,11vw,6.3rem)] w-[clamp(1.4rem,7vw,4.4rem)] rounded-[clamp(0.55rem,2vw,1.1rem)]",
+}
+
+const DIGIT_STYLES: Record<ClockDensity, string> = {
+  default: "text-[clamp(2.1rem,8.6vw,5.1rem)]",
+  compact: "text-[clamp(1.55rem,8.6vw,5.1rem)]",
+  dense: "text-[clamp(1.25rem,6.6vw,4rem)]",
+}
+
+const GROUP_GAP_STYLES: Record<ClockDensity, string> = {
+  default: "gap-1 sm:gap-1.5",
+  compact: "gap-0.5 sm:gap-1.5",
+  dense: "gap-0.5 sm:gap-1",
+}
+
+const LABEL_STYLES: Record<ClockDensity, string> = {
+  default:
+    "text-[9px] tracking-[0.28em] sm:text-[10px] sm:tracking-[0.34em]",
+  compact:
+    "text-[7px] tracking-[0.12em] min-[360px]:text-[8px] min-[360px]:tracking-[0.18em] sm:text-[10px] sm:tracking-[0.34em]",
+  dense:
+    "text-[7px] tracking-[0.1em] min-[360px]:text-[8px] min-[360px]:tracking-[0.14em] sm:text-[9px] sm:tracking-[0.26em]",
+}
+
+const SEPARATOR_STYLES: Record<ClockDensity, string> = {
+  default: "h-[clamp(4rem,13vw,7.75rem)]",
+  compact: "h-[clamp(3.1rem,13vw,7.75rem)]",
+  dense: "h-[clamp(2.7rem,11vw,6.3rem)]",
+}
+
+const CLOCK_GAP_STYLES: Record<ClockDensity, string> = {
+  default: "gap-1.5 sm:gap-3",
+  compact: "gap-1 sm:gap-3",
+  dense: "gap-0.5 sm:gap-2.5",
+}
+
+function Digit({
+  value,
+  launched,
+  density,
+}: {
+  value: string
+  launched: boolean
+  density: ClockDensity
+}) {
   return (
     <span
       className={cn(
-        "relative flex h-[clamp(4rem,13vw,7.75rem)] w-[clamp(2.45rem,9vw,5.4rem)] items-center justify-center overflow-hidden rounded-[clamp(0.9rem,2.5vw,1.35rem)] border bg-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_24px_50px_-30px_rgba(15,23,42,0.22)] backdrop-blur-sm dark:bg-white/[0.035] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.09),0_24px_60px_-30px_rgba(0,0,0,0.95)]",
+        "relative flex items-center justify-center overflow-hidden border bg-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_24px_50px_-30px_rgba(15,23,42,0.22)] backdrop-blur-sm dark:bg-white/[0.035] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.09),0_24px_60px_-30px_rgba(0,0,0,0.95)]",
+        TILE_STYLES[density],
         launched
           ? "border-emerald-600/20 dark:border-emerald-300/20"
           : "border-slate-900/10 dark:border-white/10",
@@ -30,7 +83,8 @@ function Digit({ value, launched }: { value: string; launched: boolean }) {
       <span
         key={value}
         className={cn(
-          "relative bg-gradient-to-b bg-clip-text font-mono text-[clamp(2.1rem,8.6vw,5.1rem)] font-medium leading-none tracking-[-0.04em] text-transparent tabular-nums motion-safe:animate-[digit-tick_450ms_cubic-bezier(0.22,1,0.36,1)]",
+          "relative bg-gradient-to-b bg-clip-text font-mono font-medium leading-none tracking-[-0.04em] text-transparent tabular-nums motion-safe:animate-[digit-tick_450ms_cubic-bezier(0.22,1,0.36,1)]",
+          DIGIT_STYLES[density],
           launched
             ? "from-emerald-700 via-emerald-600 to-emerald-500/60 dark:from-emerald-50 dark:via-emerald-100 dark:to-emerald-300/60"
             : "from-slate-900 via-slate-900 to-slate-500 dark:from-white dark:via-white dark:to-white/40",
@@ -46,36 +100,53 @@ function TimeGroup({
   value,
   label,
   launched,
+  density,
 }: {
   value: string
   label: string
   launched: boolean
+  density: ClockDensity
 }) {
   const digits = value.padStart(2, "0").split("")
 
   return (
     <div className="flex flex-col items-center gap-2.5 sm:gap-3.5">
-      <div className="flex gap-1 sm:gap-1.5">
+      <div className={cn("flex", GROUP_GAP_STYLES[density])}>
         {digits.map((digit, index) => (
           <Digit
             key={`${index}-${digit}`}
             value={digit}
             launched={launched}
+            density={density}
           />
         ))}
       </div>
-      <span className="text-[9px] font-medium uppercase tracking-[0.28em] text-muted-foreground sm:text-[10px] sm:tracking-[0.34em]">
+      <span
+        className={cn(
+          "font-medium uppercase text-muted-foreground",
+          LABEL_STYLES[density],
+        )}
+      >
         {label}
       </span>
     </div>
   )
 }
 
-function TimeSeparator({ launched }: { launched: boolean }) {
+function TimeSeparator({
+  launched,
+  density,
+}: {
+  launched: boolean
+  density: ClockDensity
+}) {
   return (
     <div
       aria-hidden="true"
-      className="flex h-[clamp(4rem,13vw,7.75rem)] flex-col items-center justify-center gap-2.5 sm:gap-3.5"
+      className={cn(
+        "flex flex-col items-center justify-center gap-2.5 sm:gap-3.5",
+        SEPARATOR_STYLES[density],
+      )}
     >
       <span
         className={cn(
@@ -99,10 +170,16 @@ function TimeSeparator({ launched }: { launched: boolean }) {
 
 export function Countdown({ parts, launchDateLabel }: CountdownProps) {
   const { days, hours, minutes, seconds, isLaunched } = parts
+  const hourDigits = String(hours).length
+  const density: ClockDensity =
+    hourDigits > 3 ? "dense" : hourDigits > 2 ? "compact" : "default"
 
+  const hoursWithinDay = hours % 24
   const clockLabel = isLaunched
     ? "Sistema disponível agora"
-    : `Faltam ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos`
+    : days > 0
+      ? `Faltam ${days} dias, ${hoursWithinDay} horas, ${minutes} minutos e ${seconds} segundos`
+      : `Faltam ${hours} horas, ${minutes} minutos e ${seconds} segundos`
 
   return (
     <div className="relative mt-12 w-full max-w-3xl">
@@ -165,24 +242,30 @@ export function Countdown({ parts, launchDateLabel }: CountdownProps) {
               aria-live="off"
               aria-atomic="true"
               aria-label={clockLabel}
-              className="mt-7 flex items-start justify-center gap-1.5 sm:gap-3"
+              className={cn(
+                "mt-7 flex items-start justify-center",
+                CLOCK_GAP_STYLES[density],
+              )}
             >
               <TimeGroup
                 value={String(hours)}
                 label="horas"
                 launched={isLaunched}
+                density={density}
               />
-              <TimeSeparator launched={isLaunched} />
+              <TimeSeparator launched={isLaunched} density={density} />
               <TimeGroup
                 value={String(minutes)}
                 label="minutos"
                 launched={isLaunched}
+                density={density}
               />
-              <TimeSeparator launched={isLaunched} />
+              <TimeSeparator launched={isLaunched} density={density} />
               <TimeGroup
                 value={String(seconds)}
                 label="segundos"
                 launched={isLaunched}
+                density={density}
               />
             </div>
 
