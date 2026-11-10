@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071120" />
+      <stop offset="0.5" stop-color="#05070f" />
+      <stop offset="1" stop-color="#0b0716" />
+    </linearGradient>
+    <linearGradient id="ribbon-a" x1="0" y1="900" x2="1920" y2="200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0891b2" stop-opacity="0" />
+      <stop offset="0.25" stop-color="#22d3ee" stop-opacity="0.9" />
+      <stop offset="0.62" stop-color="#3b82f6" stop-opacity="0.75" />
+      <stop offset="1" stop-color="#a855f7" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="ribbon-b" x1="200" y1="1080" x2="1700" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7c3aed" stop-opacity="0" />
+      <stop offset="0.38" stop-color="#8b5cf6" stop-opacity="0.75" />
+      <stop offset="0.72" stop-color="#06b6d4" stop-opacity="0.65" />
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="ribbon-c" x1="0" y1="500" x2="1920" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f0abfc" stop-opacity="0" />
+      <stop offset="0.45" stop-color="#c084fc" stop-opacity="0.5" />
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0" />
+    </linearGradient>
+    <radialGradient id="bloom-cyan" cx="0" cy="0" r="1" gradientTransform="translate(1430 220) rotate(90) scale(620 760)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee" stop-opacity="0.32" />
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="bloom-violet" cx="0" cy="0" r="1" gradientTransform="translate(340 880) rotate(-90) scale(560 700)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8b5cf6" stop-opacity="0.28" />
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0" />
+    </radialGradient>
+    <filter id="soft-120" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="120" />
+    </filter>
+    <filter id="soft-34" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="34" />
+    </filter>
+    <filter id="soft-8" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" />
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg)" />
+  <rect width="1920" height="1080" fill="url(#bloom-cyan)" />
+  <rect width="1920" height="1080" fill="url(#bloom-violet)" />
+
+  <ellipse cx="960" cy="-160" rx="980" ry="420" fill="#0e7490" opacity="0.18" filter="url(#soft-120)" />
+  <ellipse cx="1750" cy="920" rx="660" ry="420" fill="#6d28d9" opacity="0.16" filter="url(#soft-120)" />
+
+  <g filter="url(#soft-34)">
+    <path d="M -180 790 C 260 560, 500 980, 940 720 C 1310 500, 1520 710, 2100 360" fill="none" stroke="url(#ribbon-a)" stroke-width="128" stroke-linecap="round" />
+    <path d="M -120 980 C 360 760, 690 1090, 1120 790 C 1440 565, 1760 640, 2050 470" fill="none" stroke="url(#ribbon-b)" stroke-width="86" stroke-linecap="round" opacity="0.75" />
+  </g>
+
+  <g filter="url(#soft-8)">
+    <path d="M -120 600 C 380 360, 690 640, 1180 430 C 1500 290, 1720 340, 2040 170" fill="none" stroke="url(#ribbon-c)" stroke-width="18" stroke-linecap="round" opacity="0.7" />
+    <path d="M 90 940 C 450 780, 760 970, 1160 760 C 1450 610, 1700 650, 1960 540" fill="none" stroke="url(#ribbon-a)" stroke-width="7" stroke-linecap="round" opacity="0.55" />
+  </g>
+
+  <g fill="#e0f2fe">
+    <circle cx="240" cy="220" r="2.5" opacity="0.65" />
+    <circle cx="520" cy="140" r="1.8" opacity="0.45" />
+    <circle cx="860" cy="260" r="2" opacity="0.5" />
+    <circle cx="1240" cy="150" r="1.6" opacity="0.4" />
+    <circle cx="1580" cy="310" r="2.4" opacity="0.55" />
+    <circle cx="1780" cy="160" r="1.8" opacity="0.45" />
+    <circle cx="110" cy="520" r="1.6" opacity="0.4" />
+    <circle cx="1740" cy="700" r="2.2" opacity="0.45" />
+    <circle cx="680" cy="860" r="1.8" opacity="0.4" />
+    <circle cx="1450" cy="900" r="2" opacity="0.35" />
+  </g>
+
+  <rect width="1920" height="1080" fill="url(#bg)" opacity="0.18" />
+</svg>

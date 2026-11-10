@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08131f" />
+      <stop offset="0.5" stop-color="#060711" />
+      <stop offset="1" stop-color="#0d0717" />
+    </linearGradient>
+    <linearGradient id="beam-a" x1="240" y1="1080" x2="980" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee" stop-opacity="0" />
+      <stop offset="0.4" stop-color="#22d3ee" stop-opacity="0.42" />
+      <stop offset="0.72" stop-color="#818cf8" stop-opacity="0.3" />
+      <stop offset="1" stop-color="#c084fc" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="beam-b" x1="1060" y1="1080" x2="1880" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c084fc" stop-opacity="0" />
+      <stop offset="0.45" stop-color="#a855f7" stop-opacity="0.3" />
+      <stop offset="0.75" stop-color="#22d3ee" stop-opacity="0.35" />
+      <stop offset="1" stop-color="#67e8f9" stop-opacity="0" />
+    </linearGradient>
+    <radialGradient id="mist-a" cx="0" cy="0" r="1" gradientTransform="translate(420 300) rotate(50) scale(500 720)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0ea5e9" stop-opacity="0.3" />
+      <stop offset="1" stop-color="#0ea5e9" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="mist-b" cx="0" cy="0" r="1" gradientTransform="translate(1500 760) rotate(-135) scale(620 560)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#a855f7" stop-opacity="0.28" />
+      <stop offset="1" stop-color="#a855f7" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="mist-c" cx="0" cy="0" r="1" gradientTransform="translate(980 520) rotate(90) scale(440 300)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2dd4bf" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0" />
+    </radialGradient>
+    <filter id="blur-90" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="90" />
+    </filter>
+    <filter id="blur-38" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="38" />
+    </filter>
+    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.7" fill="#ffffff" opacity="0.16" />
+      <circle cx="5" cy="4" r="0.5" fill="#ffffff" opacity="0.1" />
+    </pattern>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg)" />
+  <rect width="1920" height="1080" fill="url(#mist-a)" />
+  <rect width="1920" height="1080" fill="url(#mist-b)" />
+  <rect width="1920" height="1080" fill="url(#mist-c)" />
+
+  <g filter="url(#blur-90)">
+    <ellipse cx="280" cy="180" rx="460" ry="300" fill="#0369a1" opacity="0.24" />
+    <ellipse cx="1520" cy="220" rx="500" ry="260" fill="#6d28d9" opacity="0.2" />
+    <ellipse cx="1220" cy="1020" rx="620" ry="300" fill="#0f766e" opacity="0.16" />
+  </g>
+
+  <g filter="url(#blur-38)">
+    <path d="M 180 1080 C 420 780, 620 520, 980 260 C 1180 110, 1380 30, 1600 -80" fill="none" stroke="url(#beam-a)" stroke-width="190" stroke-linecap="round" opacity="0.65" />
+    <path d="M 900 1100 C 1140 830, 1360 590, 1760 320 C 1840 266, 1940 220, 2020 190" fill="none" stroke="url(#beam-b)" stroke-width="150" stroke-linecap="round" opacity="0.55" />
+  </g>
+
+  <g filter="url(#blur-38)">
+    <path d="M -80 840 C 350 760, 660 860, 980 790 C 1320 716, 1600 760, 2000 660" fill="none" stroke="#67e8f9" stroke-width="2.5" opacity="0.38" />
+    <path d="M -120 900 C 320 820, 700 920, 1050 840 C 1400 760, 1660 810, 2040 720" fill="none" stroke="#c084fc" stroke-width="2" opacity="0.32" />
+  </g>
+
+  <rect width="1920" height="1080" fill="url(#grain)" opacity="0.55" />
+  <rect width="1920" height="1080" fill="url(#bg)" opacity="0.12" />
+</svg>
